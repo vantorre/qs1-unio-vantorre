@@ -1,3 +1,6 @@
+npm i -g nrw
+
+
 # Understanding nodejs
 
 ## Before the journey
