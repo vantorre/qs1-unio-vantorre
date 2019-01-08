@@ -1,49 +1,42 @@
-const notSoHeavyDo = times => {
+const heavyDo = times => {
     let count = 0;
     for (let i = 0; i < times; i++) {
-        if (
-            Math.round(
-                Math.log(Math.sqrt(Math.abs(Math.round(Math.random() * 1e10))))
-            ) === 1
-        )
+        if (Math.round(Math.log(Math.sqrt(Math.abs(Math.round(Math.random() * 1e10))))) === 1) {
             count++;
+        }
     }
     return count;
 };
 
-var heavyJobs = {
-    counts: 0,
-    queue: [],
-    _callback: null,
+let counts = 0;
+let pile = [];
+let callback;
+const add = function (task) {
+    pile.push(task);
+};
 
-    add: function(task) {
-        this.queue.push(task);
-    },
-    next: function() {
-        const self = this;
-        const task = self.queue.shift();
-        if (!task) return;
+const next = function () {
+    const task = pile.shift();
+    if (!task) return;
 
-        setImmediate(() => {
-            self.counts = self.counts + task();
-            self.queue.length === 0 ? self._callback(self.counts) : self.next();
-        });
-    },
-    do: function(cb) {
-        this._callback = cb;
-        this.next();
-    },
+    setImmediate(() => {
+        counts = counts + task();
+        pile.length === 0 ? callback(counts) : next();
+    });
+};
+
+const faire = function (cb) {
+    callback = cb;
+    next();
 };
 
 let total = 1e8,
     cuts = 100;
 for (let i = 0; i < cuts; i++) {
-    heavyJobs.add(() => notSoHeavyDo(total / cuts));
+    add(() => heavyDo(total / cuts));
 }
 
-const timer = setInterval(() => console.log('I am not blocked'), 1000);
-setTimeout(() => {
-    clearInterval(timer);
-}, 10000);
+const interval = setInterval(() => console.log('I am not blocked'), 1000);
+setTimeout(() => clearInterval(interval), 10000);
 
-heavyJobs.do(counts => console.log(counts));
+faire(counts => console.log(counts));
