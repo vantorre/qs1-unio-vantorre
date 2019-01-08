@@ -1,0 +1,23 @@
+{
+  "name": "qs1-unio-vantorre",
+  "version": "1.0.0",
+  "description": "npm i -g nrw",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prettier": "prettier --single-quote --trailing-comma es5 --write \"./src/**/*.js\" "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vantorre/qs1-unio-vantorre.git"
+  },
+  "author": "vantorre",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vantorre/qs1-unio-vantorre/issues"
+  },
+  "homepage": "https://github.com/vantorre/qs1-unio-vantorre#readme",
+  "devDependencies": {
+    "prettier": "^1.15.3"
+  }
+}
