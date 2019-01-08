@@ -12,7 +12,7 @@ setTimeout(() => clearInterval(sensaInterval), 10000);
 
 
 setTimeout(() => {
-        johnSay("hello Ladies Stark")
+        johnSay("hello Ladies Stark");
         setImmediate(() => aryaSay("thank you for needle"));
     }
     , 2000
